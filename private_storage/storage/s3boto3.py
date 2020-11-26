@@ -20,8 +20,8 @@ class PrivateS3BotoStorage(S3Boto3Storage):
 
     # Since this class inherits the default storage, it shares many parameters with the base class.
     # Thus, redefine the setting name that is used to read these values, so almost all settings are not shared.
-    access_key = setting('AWS_PRIVATE_S3_ACCESS_KEY_ID', setting('AWS_PRIVATE_ACCESS_KEY_ID', S3Boto3Storage.access_key))
-    secret_key = setting('AWS_PRIVATE_S3_SECRET_ACCESS_KEY', setting('AWS_PRIVATE_SECRET_ACCESS_KEY', S3Boto3Storage.secret_key))
+    access_key = setting('AWS_PRIVATE_S3_ACCESS_KEY_ID', setting('AWS_PRIVATE_ACCESS_KEY_ID', S3Boto3Storage().access_key))
+    secret_key = setting('AWS_PRIVATE_S3_SECRET_ACCESS_KEY', setting('AWS_PRIVATE_SECRET_ACCESS_KEY', S3Boto3Storage().secret_key))
     file_overwrite = setting('AWS_PRIVATE_S3_FILE_OVERWRITE', False)  # false, differ from base class
     object_parameters = setting('AWS_PRIVATE_S3_OBJECT_PARAMETERS', {})
     bucket_name = setting('AWS_PRIVATE_STORAGE_BUCKET_NAME')
@@ -38,11 +38,11 @@ class PrivateS3BotoStorage(S3Boto3Storage):
     addressing_style = setting('AWS_PRIVATE_S3_ADDRESSING_STYLE')
     secure_urls = setting('AWS_PRIVATE_S3_SECURE_URLS', True)
     file_name_charset = setting('AWS_PRIVATE_S3_FILE_NAME_CHARSET', 'utf-8')
-    gzip = setting('AWS_PRIVATE_IS_GZIPPED', S3Boto3Storage.gzip)  # fallback to default
+    gzip = setting('AWS_PRIVATE_IS_GZIPPED', S3Boto3Storage().gzip)  # fallback to default
     preload_metadata = setting('AWS_PRIVATE_PRELOAD_METADATA', False)
-    url_protocol = setting('AWS_PRIVATE_S3_URL_PROTOCOL', S3Boto3Storage.url_protocol)  # fallback to default
+    url_protocol = setting('AWS_PRIVATE_S3_URL_PROTOCOL', S3Boto3Storage().url_protocol)  # fallback to default
     endpoint_url = setting('AWS_PRIVATE_S3_ENDPOINT_URL', None)
-    region_name = setting('AWS_PRIVATE_S3_REGION_NAME', S3Boto3Storage.region_name)  # fallback to default
+    region_name = setting('AWS_PRIVATE_S3_REGION_NAME', S3Boto3Storage().region_name)  # fallback to default
     use_ssl = setting('AWS_PRIVATE_S3_USE_SSL', True)
 
     def url(self, name, *args, **kwargs):
